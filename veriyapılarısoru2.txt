@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+#define SIZE 6
+
+void ozelSirala(int arr[]) {
+    int i, j, temp;
+
+    // Önce diziyi küçükten büyüğe sırala (Bubble Sort)
+    for (i = 0; i < SIZE - 1; i++) {
+        for (j = 0; j < SIZE - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+
+    int sonuc[SIZE];
+    int left = 0;
+    int right = SIZE - 1;
+    int k = 0;
+
+    while (left <= right) {
+        sonuc[k++] = arr[right--];
+        if (left <= right)
+            sonuc[k++] = arr[left++];
+    }
+
+    printf("Yeni sıralama: ");
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", sonuc[i]);
+    }
+}
+
+int main() {
+    int dizi[SIZE] = {60, 80, 3, 9, 57, 11};
+
+    ozelSirala(dizi);
+
+    return 0;
+}
